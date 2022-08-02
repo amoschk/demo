@@ -1,0 +1,44 @@
+package com.example.demo.process
+
+//list any import classes here.
+
+import com.example.demo.Test
+
+//declare any global variables here
+
+rule "value for 1"
+
+	//for bpmn to link ruleflow-group
+	ruleflow-group "helloworldgroup2"
+    when
+        //conditions
+        testObject: Test(colType==1)
+    then
+        //actions
+        testObject.setColour("HelloWorldB: set to Red");
+
+end
+
+rule "value for 2"
+    //include attributes such as "salience" here...
+    //no-loop true
+	ruleflow-group "helloworldgroup2"
+    when
+        //conditions
+        testObject: Test(colType==2)
+    then
+        //actions
+		testObject.setColour("HelloWorldB: set to Blue");
+end
+
+rule "value for colType others"
+    //include attributes such as "salience" here...
+    //no-loop true
+	ruleflow-group "helloworldgroup2"
+    when
+        //conditions
+        testObject: Test(colType!=1 && colType!=2)
+    then
+        //actions
+		testObject.setColour("HelloWorldB: set to Black");
+end
