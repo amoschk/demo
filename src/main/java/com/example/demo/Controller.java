@@ -29,29 +29,26 @@ import org.springframework.web.bind.annotation.RestController;
 //https://docs.jboss.org/jbpm/v6.0.Beta2/javadocs/org/kie/api/KieServices.html
 //https://docs.jboss.org/jbpm/v6.3/userguide/ch05.html#d0e1850
 
-//make sure old container is stopped before loading new container
-
 @RestController
 public class Controller {
 
 	@Autowired
-	KieContainer kieContainer;
+	private static KieContainer kieContainer;
 	
-	File file;
+	private static File file;
 
-	Resource resource;
-	KieServices kieServices1 = KieServices.Factory.get();
-	KieFileSystem kfs1 = kieServices1.newKieFileSystem();
-	List<String> listStr = new ArrayList<String>();
-	KieRepository kr1 = kieServices1.getRepository();
-	KieSession kieSession;
+	private static Resource resource;
+	private static KieServices kieServices1 = KieServices.Factory.get();
+	private static KieFileSystem kfs1 = kieServices1.newKieFileSystem();
+	private static List<String> listStr = new ArrayList<String>();
+	private static KieRepository kr1 = kieServices1.getRepository();
+	private static KieSession kieSession;
 
+//	private static String path = "C:\\Users\\G528951\\winsw\\demo-test\\resources\\";
+	private static String path = System.getProperty("user.dir") + "\\src\\main\\resources\\com\\example\\demo\\process\\";
 	
-    private static final Logger logger 
-    = LoggerFactory.getLogger(DemoApplication.class);
-    
- 
-    
+    private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
+        
     // http://localhost:8080/getValue?type=a&colType=1
 	@GetMapping(value="getValue")
 	public Test getValue(@RequestParam String type, @RequestParam String colType) {
@@ -65,23 +62,6 @@ public class Controller {
 		kieSession.startProcess("com.example.demo.process.HelloWorld");
 		kieSession.fireAllRules();
 		kieSession.dispose();
-		
-// Method2: try dynamic change of bpmn2 file (hardcode bpmn2 and drl files) 
-//https://groups.google.com/g/drools-setup/c/qfXd9rBU_2w
-//		KieServices kieServices = KieServices.Factory.get();
-//		KieFileSystem kfs = kieServices.newKieFileSystem();
-//		KieRepository kr = kieServices1.getRepository();
-		
-//		updateResFiles();
-		
-//		KieBuilder kb = kieServices1.newKieBuilder(kfs1);
-//		kb.buildAll();
-//		kieContainer = kieServices1.newKieContainer(kr1.getDefaultReleaseId());
-//		KieSession kieSession = kieContainer.newKieSession();
-//		kieSession.insert(test);
-//		kieSession.startProcess("com.example.demo.process.HelloWorld");
-//		kieSession.fireAllRules();
-//		kieSession.dispose();
 	
 		logger.info("----- END getValue with test: " + test.toString() + " -----");
 		return test;
@@ -95,6 +75,7 @@ public class Controller {
 	    	kfs1 = kieServices1.newKieFileSystem();
 	    	listStr.clear();
 	    	
+	    	// initial plan was to search for res files but changed to load specific files
 //	    	for (String f : searchFileDirForRes().get(0)) {
 //	    		logger.info("----- BPMN2 file: " + f + " -----");
 //	    		listStr.add(f);
@@ -109,8 +90,6 @@ public class Controller {
 //	    		resource = kieServices1.getResources().newFileSystemResource(file).setResourceType(ResourceType.DRL);
 //	    		kfs1.write(resource);
 //	    	}
-	    	
-	    	String path = "C:\\Users\\G528951\\winsw\\demo-test\\resources\\";
 	    	
     		listStr.add(path+"HelloWorldA.bpmn2");
     		file = new File(path+"HelloWorldA.bpmn2");
@@ -140,8 +119,6 @@ public class Controller {
     	logger.info("----- old resource files: " + listStr + " -----");
     	kfs1 = kieServices1.newKieFileSystem();
     	listStr.clear();
-    	
-    	String path = "C:\\Users\\G528951\\winsw\\demo-test\\resources\\";
     	
     	switch (config.toLowerCase()) {
     	case "test":
@@ -257,8 +234,8 @@ public class Controller {
 	public List<List<String>> searchFileDirForRes() {
 		List<List<String>> files = new ArrayList<List<String>>();
 		try {
-			List<String>filesBPMN2 = findFiles(Paths.get("C:\\Users\\G528951\\winsw\\demo-test\\resources"), "bpmn2");
-			List<String>filesDRL = findFiles(Paths.get("C:\\Users\\G528951\\winsw\\demo-test\\resources"), "drl");
+			List<String>filesBPMN2 = findFiles(Paths.get(path), "bpmn2");
+			List<String>filesDRL = findFiles(Paths.get(path), "drl");
 			files.add(filesBPMN2);
 			files.add(filesDRL);
 
@@ -282,8 +259,6 @@ public class Controller {
 	                    .filter(f -> f.endsWith(fileExtension))
 	                    .collect(Collectors.toList());
 	        }
-
 	        return result;
 	    }
-	
 }

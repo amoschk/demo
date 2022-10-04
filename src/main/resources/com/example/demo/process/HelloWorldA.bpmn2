@@ -41,28 +41,28 @@
     <bpmn2:sequenceFlow id="SequenceFlow_3" tns:priority="1" sourceRef="BusinessRuleTask_2" targetRef="EndEvent_1"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="com.example.demo.process.HelloWorld">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="com.example.demo.process.HelloWorldA">
       <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
         <dc:Bounds height="36.0" width="36.0" x="80.0" y="57.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_1">
+        <bpmndi:BPMNLabel>
           <dc:Bounds height="34.0" width="55.0" x="71.0" y="93.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_1" bpmnElement="BusinessRuleTask_1" isExpanded="true">
         <dc:Bounds height="50.0" width="110.0" x="170.0" y="50.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_2">
+        <bpmndi:BPMNLabel>
           <dc:Bounds height="34.0" width="107.0" x="171.0" y="58.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_2" bpmnElement="BusinessRuleTask_2" isExpanded="true">
         <dc:Bounds height="50.0" width="110.0" x="400.0" y="58.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_3">
+        <bpmndi:BPMNLabel>
           <dc:Bounds height="34.0" width="107.0" x="401.0" y="66.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_1">
         <dc:Bounds height="36.0" width="36.0" x="622.0" y="52.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_4">
+        <bpmndi:BPMNLabel>
           <dc:Bounds height="17.0" width="79.0" x="601.0" y="88.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
@@ -70,21 +70,21 @@
         <di:waypoint xsi:type="dc:Point" x="116.0" y="75.0"/>
         <di:waypoint xsi:type="dc:Point" x="143.0" y="75.0"/>
         <di:waypoint xsi:type="dc:Point" x="170.0" y="75.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_5"/>
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_BusinessRuleTask_1" targetElement="BPMNShape_BusinessRuleTask_2">
         <di:waypoint xsi:type="dc:Point" x="280.0" y="75.0"/>
         <di:waypoint xsi:type="dc:Point" x="340.0" y="75.0"/>
         <di:waypoint xsi:type="dc:Point" x="340.0" y="83.0"/>
         <di:waypoint xsi:type="dc:Point" x="400.0" y="83.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_6"/>
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_BusinessRuleTask_2" targetElement="BPMNShape_EndEvent_1">
         <di:waypoint xsi:type="dc:Point" x="510.0" y="83.0"/>
         <di:waypoint xsi:type="dc:Point" x="566.0" y="83.0"/>
         <di:waypoint xsi:type="dc:Point" x="566.0" y="70.0"/>
         <di:waypoint xsi:type="dc:Point" x="622.0" y="70.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_7"/>
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

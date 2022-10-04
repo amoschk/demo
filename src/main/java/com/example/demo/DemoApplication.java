@@ -28,10 +28,4 @@ public class DemoApplication {
 		logger.info("----- in kieContainer -----");
 		return KieServices.Factory.get().getKieClasspathContainer();
 	}
-	
-//	@Bean
-//	public KnowledgeBuilder kbuilder() {
-//		logger.info("----- in kieContainer -----");
-//		return KnowledgeBuilderFactory.newKnowledgeBuilder(); 
-//	}
 }
