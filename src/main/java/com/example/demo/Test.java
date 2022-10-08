@@ -34,7 +34,5 @@ public class Test {
 	@Override
 	public String toString() {
 		return "Test [type=" + type + ", value=" + value + ", colType=" + colType + ", colour=" + colour + "]";
-	}
-	
-	
+	}	
 }

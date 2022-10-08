@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_KIpOIEcDEe2HDdva60hCKQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_actionItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_retryItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="_retryDelayItem" structureRef="Integer"/>
+  <bpmn2:process id="gate_orchestrator.retry_process" drools:packageName="com.demospace.gate_orchestrator" drools:version="1.0" drools:adHoc="false" name="retry_process" isExecutable="true" processType="Public">
+    <bpmn2:property id="action" itemSubjectRef="_actionItem" name="action"/>
+    <bpmn2:property id="retry" itemSubjectRef="_retryItem" name="retry"/>
+    <bpmn2:property id="retryDelay" itemSubjectRef="_retryDelayItem" name="retryDelay"/>
+    <bpmn2:sequenceFlow id="_3254940A-FE04-4E2D-B2D5-3BAFF553FFA6" sourceRef="_2D20AD78-FFD5-493D-B853-F0ACE04348BB" targetRef="_45BFAEA9-AC67-4D07-91A6-7F54BB53F32B"/>
+    <bpmn2:sequenceFlow id="_A3019048-9511-4F10-8845-3FAC678F55A0" sourceRef="_407B4A21-AFA8-4BBD-8DDB-EE6F7D08B707" targetRef="_2D20AD78-FFD5-493D-B853-F0ACE04348BB"/>
+    <bpmn2:endEvent id="_45BFAEA9-AC67-4D07-91A6-7F54BB53F32B">
+      <bpmn2:incoming>_3254940A-FE04-4E2D-B2D5-3BAFF553FFA6</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:startEvent id="_407B4A21-AFA8-4BBD-8DDB-EE6F7D08B707">
+      <bpmn2:outgoing>_A3019048-9511-4F10-8845-3FAC678F55A0</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:scriptTask id="_2D20AD78-FFD5-493D-B853-F0ACE04348BB" name="Task" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Task]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_A3019048-9511-4F10-8845-3FAC678F55A0</bpmn2:incoming>
+      <bpmn2:outgoing>_3254940A-FE04-4E2D-B2D5-3BAFF553FFA6</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("At retry process.");
+
+
+String actionLocal = (String) kcontext.getVariable("action");
+Integer retryLocal = (Integer) kcontext.getVariable("retry");
+Integer retryDelayLocal = (Integer) kcontext.getVariable("retryDelay");
+
+retryLocal = retryLocal - 1;
+kcontext.setVariable("retry", retryLocal);
+
+System.out.println("action: " + actionLocal + ", retry: " + retryLocal + ", retryDeylay: " + retryDelayLocal);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_KIpOIUcDEe2HDdva60hCKQ">
+    <bpmndi:BPMNPlane id="_KIpOIkcDEe2HDdva60hCKQ" bpmnElement="gate_orchestrator.retry_process">
+      <bpmndi:BPMNShape id="shape__2D20AD78-FFD5-493D-B853-F0ACE04348BB" bpmnElement="_2D20AD78-FFD5-493D-B853-F0ACE04348BB">
+        <dc:Bounds height="102.0" width="154.0" x="774.0" y="353.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__407B4A21-AFA8-4BBD-8DDB-EE6F7D08B707" bpmnElement="_407B4A21-AFA8-4BBD-8DDB-EE6F7D08B707">
+        <dc:Bounds height="56.0" width="56.0" x="575.0" y="376.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__45BFAEA9-AC67-4D07-91A6-7F54BB53F32B" bpmnElement="_45BFAEA9-AC67-4D07-91A6-7F54BB53F32B">
+        <dc:Bounds height="56.0" width="56.0" x="1198.0" y="376.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__407B4A21-AFA8-4BBD-8DDB-EE6F7D08B707_to_shape__2D20AD78-FFD5-493D-B853-F0ACE04348BB" bpmnElement="_A3019048-9511-4F10-8845-3FAC678F55A0">
+        <di:waypoint xsi:type="dc:Point" x="603.0" y="404.0"/>
+        <di:waypoint xsi:type="dc:Point" x="774.0" y="404.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__2D20AD78-FFD5-493D-B853-F0ACE04348BB_to_shape__45BFAEA9-AC67-4D07-91A6-7F54BB53F32B" bpmnElement="_3254940A-FE04-4E2D-B2D5-3BAFF553FFA6">
+        <di:waypoint xsi:type="dc:Point" x="851.0" y="404.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1198.0" y="404.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship id="_KIpOI0cDEe2HDdva60hCKQ" type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters"/>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_2D20AD78-FFD5-493D-B853-F0ACE04348BB" id="_KIpOJEcDEe2HDdva60hCKQ">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters xsi:type="bpsim:ResourceParameters">
+              <bpsim:Availability xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters xsi:type="bpsim:CostParameters">
+              <bpsim:UnitCost xsi:type="bpsim:Parameter">
+                <bpsim:FloatingParameter value="0.0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_407B4A21-AFA8-4BBD-8DDB-EE6F7D08B707" id="_KIpOJUcDEe2HDdva60hCKQ">
+            <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
+              <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
+                <bpsim:NormalDistribution mean="0.0" standardDeviation="0.0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+          </bpsim:ElementParameters>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_KIpOIEcDEe2HDdva60hCKQ</bpmn2:source>
+    <bpmn2:target>_KIpOIEcDEe2HDdva60hCKQ</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>

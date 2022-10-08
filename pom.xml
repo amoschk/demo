@@ -44,19 +44,41 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.kie/kie-ci -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 		<dependency>
 		    <groupId>org.kie</groupId>
 		    <artifactId>kie-ci</artifactId>
-		    <version>7.62.0.Final</version>
+		    <version>7.73.0.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jbpm/jbpm-workitems-core -->
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-workitems-core</artifactId>
+			<version>7.73.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jbpm/jbpm-human-task-workitems -->
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-human-task-workitems</artifactId>
+			<version>7.73.0.Final</version>
 		</dependency>
 
 		<dependency>
       		<groupId>org.jbpm</groupId>
       		<artifactId>jbpm-test</artifactId>
-      		<version>7.62.0.Final</version>
+      		<version>7.73.0.Final</version>
     	</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jbpm/jbpm-flow -->
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-flow</artifactId>
+			<version>7.73.0.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
